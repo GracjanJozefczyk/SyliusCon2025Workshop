@@ -1,0 +1,4 @@
+sylius:
+    ui:
+        brand: Brand
+        brands: Brands
