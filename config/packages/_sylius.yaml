@@ -279,3 +279,6 @@ sylius_twig_hooks:
         'sylius_shop.base#javascripts':
             app_javascripts:
                 template: 'shop/javascripts.html.twig'
+        'sylius_admin.brand.show.content':
+            table:
+                template: 'admin/brand/show/content.html.twig'
