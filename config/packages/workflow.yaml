@@ -1,2 +1,33 @@
 framework:
-    workflows: null
+    workflows:
+        !php/const App\SM\BrandTransitions::GRAPH:
+            type: state_machine
+            marking_store:
+                type: method
+                property: state
+            supports:
+                - App\Entity\Brand\Brand
+            initial_marking: !php/const App\SM\BrandStates::STATE_NEW
+            places:
+                - !php/const App\SM\BrandStates::STATE_NEW
+                - !php/const App\SM\BrandStates::STATE_APPROVED
+                - !php/const App\SM\BrandStates::STATE_REJECTED
+                - !php/const App\SM\BrandStates::STATE_SUSPENDED
+            transitions:
+                !php/const App\SM\BrandTransitions::TRANSITION_APPROVE:
+                    from:
+                        - !php/const App\SM\BrandStates::STATE_NEW
+                        - !php/const App\SM\BrandStates::STATE_REJECTED
+                        - !php/const App\SM\BrandStates::STATE_SUSPENDED
+                    to:
+                        - !php/const App\SM\BrandStates::STATE_APPROVED
+                !php/const App\SM\BrandTransitions::TRANSITION_REJECT:
+                    from:
+                        - !php/const App\SM\BrandStates::STATE_NEW
+                    to:
+                        - !php/const App\SM\BrandStates::STATE_REJECTED
+                !php/const App\SM\BrandTransitions::TRANSITION_SUSPEND:
+                    from:
+                        - !php/const App\SM\BrandSTATES::STATE_APPROVED
+                    to:
+                        - !php/const App\SM\BrandStates::STATE_SUSPENDED

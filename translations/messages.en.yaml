@@ -2,3 +2,5 @@ sylius:
     ui:
         brand: Brand
         brands: Brands
+        approve: Approve
+        suspend: Suspend

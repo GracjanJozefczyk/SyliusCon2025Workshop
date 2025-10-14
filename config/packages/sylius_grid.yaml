@@ -42,3 +42,39 @@ sylius_grid:
                         type: update
                     show:
                         type: show
+                    reject:
+                        type: apply_transition
+                        label: sylius.ui.reject
+                        icon: "tabler:x"
+                        options:
+                            link:
+                                route: sylius_admin_brand_reject
+                                parameters:
+                                    id: resource.id
+                            class: btn-danger
+                            transition: reject
+                            graph: sylius_brand
+                    approve:
+                        type: apply_transition
+                        label: sylius.ui.approve
+                        icon: "tabler:check"
+                        options:
+                            link:
+                                route: sylius_admin_brand_approve
+                                parameters:
+                                    id: resource.id
+                            class: btn-primary
+                            transition: approve
+                            graph: sylius_brand
+                    suspend:
+                        type: apply_transition
+                        label: sylius.ui.suspend
+                        icon: "tabler:hourglass-empty"
+                        options:
+                            link:
+                                route: sylius_admin_brand_suspend
+                                parameters:
+                                    id: resource.id
+                            class: btn-warning
+                            transition: suspend
+                            graph: sylius_brand

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Brand;
 
+use App\SM\BrandStates;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -20,6 +21,9 @@ class Brand implements BrandInterface
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $name = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $state = BrandStates::STATE_NEW;
 
     public function getId(): ?int
     {
@@ -44,5 +48,15 @@ class Brand implements BrandInterface
     public function setCode(?string $code): void
     {
         $this->code = $code;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
     }
 }
