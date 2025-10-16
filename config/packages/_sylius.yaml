@@ -145,6 +145,7 @@ sylius_product:
         product:
             classes:
                 model: App\Entity\Product\Product
+                repository: App\Repository\ProductRepository
             translation:
                 classes:
                     model: App\Entity\Product\ProductTranslation
@@ -279,3 +280,17 @@ sylius_twig_hooks:
         'sylius_shop.base#javascripts':
             app_javascripts:
                 template: 'shop/javascripts.html.twig'
+        
+        'sylius_admin.brand.show.content':
+            table:
+                template: 'admin/brand/show/content.html.twig'
+
+        'sylius_admin.product.update.content.form.sections.general':
+            brand:
+                template: 'admin/product/brand.html.twig'
+                priority: -200
+
+        'sylius_shop.base.header.navbar.menu':
+            branded_products:
+                template: 'shop/brand/brandMenu.html.twig'
+                priority: 200

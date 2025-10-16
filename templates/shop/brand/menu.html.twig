@@ -1,0 +1,13 @@
+<div class="nav-item dropdown">
+    <a class="nav-link d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Branded Products
+        {{ ux_icon('tabler:chevron-down', { 'class': 'icon icon-sm'}) }}
+    </a>
+    <div class="dropdown-menu">
+        {% for brand in brands %}
+            <a class="nav-link" href="{{ path('sylius_shop_branded_products_index', {'code': brand.code}) }}">
+                {{ brand.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>

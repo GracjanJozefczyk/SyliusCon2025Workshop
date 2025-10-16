@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Entity\Brand;
 
+use App\Entity\Product\Product;
 use App\SM\BrandStates;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -24,6 +27,14 @@ class Brand implements BrandInterface
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $state = BrandStates::STATE_NEW;
+
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'brand')]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -58,5 +69,27 @@ class Brand implements BrandInterface
     public function setState(?string $state): void
     {
         $this->state = $state;
+    }
+
+
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): void
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setBrand($this);
+        }
+    }
+
+    public function removeProduct(Product $product): void
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            $product->setBrand(null);
+        }
     }
 }

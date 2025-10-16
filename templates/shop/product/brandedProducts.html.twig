@@ -1,0 +1,20 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block content %}
+    <div class="container mt-4 mb-5">
+        <div class="row mt-5">
+            <div class="col-12">
+                {% import '@SyliusShop/shared/messages.html.twig' as messages %}
+                {% if resources|length > 0 %}
+                    <div class="products-grid" }}>
+                        {% for product in resources %}
+                            {{ component('sylius_shop:product:card', { product: product, template: '@SyliusShop/product/common/card.html.twig' }) }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ messages.info('sylius.ui.no_results_to_display') }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
