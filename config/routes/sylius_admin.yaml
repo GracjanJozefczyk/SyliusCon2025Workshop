@@ -12,3 +12,36 @@ sylius_admin_brand:
         grid: sylius_admin_brand
         permission: true
     type: sylius.resource
+
+sylius_admin_brand_approve:
+    path: /admin/brands/{id}/approve
+    methods: [PUT]
+    defaults:
+        _controller: sylius.controller.brand::applyStateMachineTransitionAction
+        _sylius:
+            state_machine:
+                graph: sylius_brand
+                transition: approve
+            redirect: referer
+
+sylius_admin_brand_reject:
+    path: /admin/brands/{id}/reject
+    methods: [PUT]
+    defaults:
+        _controller: sylius.controller.brand::applyStateMachineTransitionAction
+        _sylius:
+            state_machine:
+                graph: sylius_brand
+                transition: reject
+            redirect: referer
+
+sylius_admin_brand_suspend:
+    path: /admin/brands/{id}/suspend
+    methods: [PUT]
+    defaults:
+        _controller: sylius.controller.brand::applyStateMachineTransitionAction
+        _sylius:
+            state_machine:
+                graph: sylius_brand
+                transition: suspend
+            redirect: referer

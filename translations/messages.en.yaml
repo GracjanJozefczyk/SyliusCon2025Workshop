@@ -1,0 +1,7 @@
+sylius:
+    ui:
+        approve: Approve
+        reject: Reject
+        suspend: Suspend
+        brand: Brand
+        brands: Brands
