@@ -28,3 +28,9 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Cli\TestCommand:
+        bind:
+            $brandRepository: '@sylius.repository.brand'
+            $brandFactory: '@sylius.factory.brand'
+            $brandManager: '@sylius.manager.brand'
